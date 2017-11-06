@@ -1,0 +1,37 @@
+import matplotlib.pyplot as plt
+
+import matplotlib.image as mpimg
+
+plt.clf()
+Quakes = open("currentQuakes.txt")
+#FullData = Quakes.read()
+#print (FullData)
+
+ColumnNames = Quakes.readline()
+print (ColumnNames)
+
+#Empty Lists
+latitude = []
+longitude = []
+
+#setting picture as variable 
+image = mpimg.imread ("long_and_lat.png")
+for line in Quakes:
+    line = line.split(',')
+    #print(line[0])
+    latitude.append(float(line[1]))
+    longitude.append(float(line[2]))
+
+
+plt.scatter(longitude, latitude, label = "earthquake")
+
+plt.imshow(image, extent=[-197,196,87,-63])
+
+plt.xlabel("Longitude")
+plt.ylabel("Latitude")
+plt.legend()
+plt.suptitle("Demographic and Intensity of Earthquakes in 2017 Based on Hemisphere")
+plt.show()
+ 
+
+
